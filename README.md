@@ -56,7 +56,7 @@ Gets a copy of the bytes that represent the numbers that were added on the compa
 Returns a pointer to the first byte of the sequence.
 
 #### int gelasia_compacter_get_number_count(gelasia_compacter *comp);
-Gets the count of numbers that have been addded to the compacter.
+Gets the count of numbers that have been added to the compacter.
   * comp is the pointer to the compacter.
 Returns the count of numbers that have been added to comp.
 
