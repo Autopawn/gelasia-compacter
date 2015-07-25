@@ -1,5 +1,5 @@
 # gelasia-compacter
-The gelasia-compacter is a utility (wrote on C) to pack and unpack series of self-delimited integer numbers in a sequence of bytes, usually to be sent or stored in a compressed format. This is done using the, here first time described, "gelasia number representation" that ensures the smaller numbers to use less bits.
+The gelasia-compacter is a utility (wrote on C) to pack and unpack series of self-delimited integer numbers in a sequence of bytes, usually to be sent or stored in a compressed format. This is done using the, [here](https://github.com/Autopawn/gelasia-compacter/blob/master/representation/gelasia_representation.pdf) first time described, "gelasia number representation" that ensures the smaller numbers to use less bits.
 
 Like this:
 
@@ -34,7 +34,4 @@ Like this:
      30517578125 = 1110 0 01 00010 1100011010111111010100100110001111 
     152587890625 = 1110 0 01 00101 0001110000110111100100110111111000011
 
----
-* src/test.c has example code of how the utility should be used.
-* doc/ has a .pdf with the description of the gelasia number representation and a .tex version as well.
----
+* [src/test.c](https://github.com/Autopawn/gelasia-compacter/blob/master/src/test.c) has example code of how the utility should be used.
