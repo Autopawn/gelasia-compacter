@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]){
 	gelasia_compacter_add_number(compacter,-4087543);
 	gelasia_compacter_add_number(compacter,1);
 	gelasia_compacter_add_number(compacter,1213);
-	gelasia_compacter_add_number(compacter,13);
+	gelasia_compacter_add_number(compacter,152587890625);
 	gelasia_compacter_add_number(compacter,-13);
 	// You can see the sequence of bits:
 	gelasia_compacter_show(compacter);
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[]){
 	// Retrieve the numbers and destroy the reader.
 	long long *numbers= delete_gelasia_reader_and_get_numbers(reader);
 	int j; for(j=0;j<5;j++){
-		printf("Number %i:\t%d\n",j,numbers[j]);
+		printf("Number %i:\t%lli\n",j,numbers[j]);
 	}
 
 	// Cleaning.

@@ -27,7 +27,7 @@ int get_size(vlong number,int added){
 
 void gelasia_compacter_write_on_seq(gelasia_compacter *comp, uvlong number,int size){
 	#ifdef GELASIA_DEBUG
-	printf("\tWriting: %d\tsiz:%d\n",number,size);
+	printf("\tWriting: %lli\tsiz:%lli\n",number,size);
 	#endif
 	//getting the part to be added.
 	uvlong extra= number;
@@ -97,7 +97,7 @@ void gelasia_compacter_write_number(gelasia_compacter *comp, uvlong number, int 
 
 int gelasia_compacter_add_number(gelasia_compacter *comp, vlong number){
 	#ifdef GELASIA_DEBUG
-	printf("Number: %d\n",number);
+	printf("Number: %lli\n",number);
 	#endif
 	int sign=0;
 	//get the absolute value of a number, if it's negative, the absolute value minus 1.
@@ -163,7 +163,7 @@ gelasia_reader *new_gelasia_reader(int with_sign, int numbers){
 
 int gelasia_reader_read_on_seq(gelasia_reader *readr, int size, uvlong *number){
 	#ifdef GELASIA_DEBUG
-	printf("\tReading siz:%d\n",size);
+	printf("\tReading siz:%lli\n",size);
 	#endif
 	int new_res_pos= readr->res_pos+size;
 	if(new_res_pos>(readr->res_size*CHAR_BIT)) return 0;
@@ -174,7 +174,7 @@ int gelasia_reader_read_on_seq(gelasia_reader *readr, int size, uvlong *number){
 		int next_bits= MOD(-readr->res_pos,CHAR_BIT);
 		if(next_bits==0) next_bits=CHAR_BIT;
 		#ifdef GELASIA_DEBUG
-		printf("\t\tReading bit: %d %d \n",current_byte,next_bits);
+		printf("\t\tReading bit: %lli %lli \n",current_byte,next_bits);
 		#endif
 		if(next_bits<CHAR_BIT){
 			current_byte= (current_byte << (CHAR_BIT-next_bits));
@@ -235,7 +235,7 @@ int gelasia_reader_feed(gelasia_reader *readr, byte *input, int size_receibed, i
 				}
 			}else if(readr->calculating_recursivity==0){
 				#ifdef GELASIA_DEBUG
-				printf("\tRecursivity: %d\n",readr->recursivity);
+				printf("\tRecursivity: %lli\n",readr->recursivity);
 				#endif
 				if(!gelasia_reader_read_on_seq(readr,readr->next_number_size,&result)) return 0;
 				uvlong value= 1;
