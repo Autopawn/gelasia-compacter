@@ -261,7 +261,7 @@ It's possible to set the minimal recursivity to $0$ instead of $1$, this will gi
           18 = 1110 0 00 0011 
 	      		...	
 \end{lstlisting} \end{center}
-Also it's possible to add a base value to the size of all the numbers, for example $3$:
+Also it's possible add a base value to the size of all the numbers, for example $3$:
 \begin{center} \begin{lstlisting}
            0 = 0 000
            1 = 0 001
@@ -276,5 +276,5 @@ Also it's possible to add a base value to the size of all the numbers, for examp
           24 = 10 0 01 00000
            	   ...	
 \end{lstlisting} \end{center}
-This modifications, among others, like applying an offset, can be made to ensure that the most frequent numbers use less space.
+This modifications, among others, like applying and offset, can be made to ensure that the most frequent numbers use less space.
 \end{document}
