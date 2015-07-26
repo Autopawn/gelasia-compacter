@@ -234,8 +234,8 @@ For a positive number $N$ (before substracting $1$) the size $S$ is the position
 		65536-131071 & 5 & 23 & S+28 \\
 		131072-262143 & 5 & 24 & S+29
 	\end{tabular}
-Then, if an unsigned number is smaller than $2^{21}-1=2097151$ (before substracting $1$) it's granteed to use the same or less of the space that's possible to allocate on 32 bits.
 \end{center} 
+Then, if an unsigned number is smaller than $2^{21}-1=2097151$ (before substracting $1$) it's granteed to use the same or less of the space that's possible to allocate on 32 bits.
 	If the representation is signed, $1$ extra bit should be added.
 \section{Possible variantions}
 It's possible to set the minimal recursivity to $0$ instead of $1$, this will give a natural representation for the number $0$ that only requires one bit, but will imply for all the other values to have an aditional $1$ on it's recursivity header.
