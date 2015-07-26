@@ -28,7 +28,7 @@
 \maketitle
 
 \begin{abstract}
-The present document shows a way to represent integer numbers of any size on a binary digits array, storing at the same time both it's value and it's size, this in order to store or send a group of well delimited numbers on a compact and scalable way, ensuring the small numbers to use less space. This can also be used when seting up standars, avoiding issues related to indexation (like, the overflow of a fixed space to countain addresses, or a very expensive memory reserve for a large number range, that's not totally used on most of the cases).
+The present document shows a way to represent integer numbers of any size on a binary digits array, saving at the same time both it's value and it's size, this in order to store or send a group of well delimited numbers on a compact and scalable way, ensuring the small numbers to use less space. This can also be used when seting up standars, avoiding issues related to indexation (like, the overflow of a fixed space to countain addresses, or a very expensive memory reserve for a large number range, that's not totally used on most of the cases).
 \end{abstract}
 
 \tableofcontents
@@ -84,7 +84,7 @@ Now every possible value is being used, so, to get a number $N$ given it's size 
 	&= X+1+ \frac{2^{S}-2}{2-1} \\
 	&= X+2^{S}-1
 \end{align*}
-Now, since the size $S$ of a number, is also a number, it can be represented the same way, but, because $S>0$ it's better to store $S-1$. We can do so, until the size$-1$ of a size is $0$, The result is as follows:
+Now, since the size $S$ of a number, is also a number, it can be represented the same way, but, because $S>0$, it's better to store $S-1$. We can do so, until the size$-1$ of a size is $0$, The result is as follows:
 \begin{center} \begin{lstlisting}
 	 1 = [size:1] 0
 	 2 = [size:1] 1
@@ -105,7 +105,7 @@ Now, since the size $S$ of a number, is also a number, it can be represented the
 	17 = [size:4] 0010 = [size:2] 00 0010 = [size:1] 0 00 0010
 	      ...	
 \end{lstlisting} \end{center}
-The only information that's then needed to recover a number besides the secuence of digits on the right is how many times the size-1 representation algorithm was applied (this will be called recursivity), since this number grows on a very slow rate it can be represented on the most primitive way that allows an infinite size, this is a series of $1$ ended by a $0$, where the amount of $1$s is the number of times that the algorithm had to be applied:
+The only information that's then needed to recover a number besides the secuence of digits on the right is how many times the size-1 representation algorithm was applied (this will be called recursivity), since this number grows on a very slow rate it can be represented on the most primitive way that allows an infinite size, this is a series of $1$ ended by a $0$, where the amount of $1$'s is the number of times that the algorithm had to be applied:
 \begin{center} \begin{lstlisting}
            1 = 0 0 
            2 = 0 1
@@ -127,7 +127,7 @@ The only information that's then needed to recover a number besides the secuence
           18 = 110 0 00 0011 
 	      		...	
 \end{lstlisting} \end{center}
-Not only the number it's store on these bits, also it's size, that allows many numbers to be added contiguously on a bit array without need of a delimitator of additional data.
+Not only the number it's stored on these bits, also it's size, that allows many numbers to be added contiguously on a bit array without need of a delimitator of additional data.
 \subsection{Unsigned gelasia representation}
 Now, with the last results, it's possible to substract $1$ to the values in order to have a representation for the $0$. This results on the following final representation:
 \begin{center} \begin{lstlisting}
@@ -210,6 +210,33 @@ Then, if B is the sign bit of a number, it's value would be:
 
 \section{Calculation of a number's size}
 For a positive number $N$ (before substracting $1$) the size $S$ is the position (from right to left, starting from $0$) of the most significant $1$ of the binary representation of the value $N+1$, this also applies to a negative number with it's absolute value. And is deducted from the equation $N = X+2^{S}-1$.
+\\ Once the value $S$ is known, the following amounts of bits should be added to $S$ to complete the total size.
+\begin{center}
+	\begin{tabular}{ r || c| c || c}
+		S & recursivity & size indication & total \\
+		\hline 
+		1 & 1 & 0 & S+1 \\
+		2-3 & 2 & 1 & S+3 \\
+		4-7 & 3 & 3 & S+6 \\
+		8-15 & 3 & 4 & S+7 \\
+		16-31 & 4 & 7 & S+11 \\
+		32-63 & 4 & 8 & S+12 \\
+		64-127 & 4 & 9 & S+13 \\
+		128-255 & 4 & 10 & S+14 \\
+		256-511 & 4 & 12 & S+15 \\
+		512-1023 & 4 & 13 & S+16 \\
+		1024-2047 & 4 & 14 & S+17 \\
+		2048-4095 & 4 & 15 & S+18 \\
+		4096-8191 & 4 & 16 & S+19 \\
+		8192-16383 & 4 & 17 & S+20 \\
+		16384-32767 & 4 & 18 & S+21 \\
+		32768-65535 & 4 & 19 & S+22 \\	  
+		65536-131071 & 5 & 23 & S+28 \\
+		131072-262143 & 5 & 24 & S+29
+	\end{tabular}
+Then, if an unsigned number is smaller than $2^{21}-1=2097151$ (before substracting $1$) it's granteed to use the same or less of the space that's possible to allocate on 32 bits.
+\end{center} 
+	If the representation is signed, $1$ extra bit should be added.
 \section{Possible variantions}
 It's possible to set the minimal recursivity to $0$ instead of $1$, this will give a natural representation for the number $0$ that only requires one bit, but will imply for all the other values to have an aditional $1$ on it's recursivity header.
 \begin{center} \begin{lstlisting}
