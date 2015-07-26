@@ -34,9 +34,24 @@ Like this:
      30517578125 = 1110 0 01 00010 1100011010111111010100100110001111 
     152587890625 = 1110 0 01 00101 0001110000110111100100110111111000011
 
-numbers smaller than 1048575 will use less than 32 bits on an unsinged compacter.
-numbers in [-524287,524286] will use less than 32 bits on a signed compacter.
-numbers smaller than 2251799813685247 will use less than 64 bits on an signed compacter.
+# Expected sizes on bits.
+To calculate the size that a number N will use, in bits, get the possition (from right to left, starting from 0) of the most significant 1 of the value N+2, that will be called S.
+
+    If...
+      ...     S == 1   , the size will be 2.
+      ...  2  <= S <  4, the size will be S+3.
+      ...  4  <= S <  8, the size will be S+6.
+      ...  8  <= S < 16, the size will be S+7.
+      ...  16 <= S < 32, the size will be S+11.
+      ...  32 <= S < 64, the size will be S+12.
+            ...
+  plus a sign bit if the representation is signed.
+  
+  (For negative numbers, to calculate S check the most significant 1 of -N+1).
+
+* Numbers smaller than 1048575 will use less than 32 bits on an unsinged compacter.
+* Numbers in [-524287,524286] will use less than 32 bits on a signed compacter.
+* Numbers smaller than 2251799813685247 will use less than 64 bits on an signed compacter.
 
 The size of a pack of numbers will only be the sum of the bits required for each number (plus up to 7 bits required to complete the last byte).
 
