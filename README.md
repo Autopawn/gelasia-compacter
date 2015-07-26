@@ -35,7 +35,7 @@ Like this:
     152587890625 = 1110 0 01 00101 0001110000110111100100110111111000011
 
 # Expected sizes on bits.
-To calculate the size that a number N will use, in bits, get the possition (from right to left, starting from 0) of the most significant 1 of the value N+2, that will be called S.
+To calculate the size that a number N will use, in bits, get the position (from right to left, starting from 0) of the most significant 1 of the value N+2 (in binary form), that will be called S.
 
     If...
       ...     S == 1   , the size will be 2.
